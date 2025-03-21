@@ -1,0 +1,69 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "type": "string",
+            "metadata": {
+                "description": "name of Linked Template"
+            },
+            "defaultValue": "LinkedDemo001"
+        }
+    },
+    "functions": [],
+    "variables": {
+        "linked-template-one": "value",
+        "linked-template-two": "value"
+    },
+    "resources": [
+        {
+            "name": "storage",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2024-07-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('linked-template-one')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "name": {
+                        "value": "[parameters('name')]"
+                    },
+                    "location": {
+                        "value": "[resourceGroup().location]"
+                    }
+                }
+            }
+        },
+        {
+            "name": "identity",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2024-07-01",
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments', 'storage')]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('linked-template-two')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "name": {
+                        "value": "[parameters('name')]"
+                    },
+                    "location": {
+                        "value": "[resourceGroup().location]"
+                    }
+                }
+            }
+        }
+    ],
+    "outputs": {
+        "storageURI": {
+            "type": "string",
+            "value": "[reference('storage').outputs.storageEndpoint.value]"
+        }
+    }
+}
