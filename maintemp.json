@@ -12,8 +12,8 @@
     },
     "functions": [],
     "variables": {
-        "linked-template-one": "value",
-        "linked-template-two": "value"
+        "linked-template-one": "https://raw.githubusercontent.com/go4adil/GitHub-Linked-Templates/refs/heads/main/linked-template-one.json",
+        "linked-template-two": "https://raw.githubusercontent.com/go4adil/GitHub-Linked-Templates/refs/heads/main/linked-template-two.json"
     },
     "resources": [
         {
