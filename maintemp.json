@@ -5,7 +5,7 @@
         "name": {
             "type": "string",
             "metadata": {
-                "description": "name of Linked Template"
+                "description": "name parameter to be input for use in Linked Template-1 and 2"
             },
             "defaultValue": "LinkedDemo001"
         }
