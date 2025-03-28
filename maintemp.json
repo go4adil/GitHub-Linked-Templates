@@ -37,7 +37,7 @@
             }
         },
         {
-            "name": "identity",
+            "name": "virtualNet",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2024-07-01",
             "dependsOn": [
