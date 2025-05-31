@@ -1,22 +1,15 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {
-        "name": {
-            "type": "string"
-        },
-        "location": {
-            "type": "string"
-        }
-    },
+    "parameters": {},
     "functions": [],
     "variables": {},
     "resources": [
     {
-        "name": "vnet-001",
+        "name": "[parameters('name')]",
         "type": "Microsoft.Network/virtualNetworks",
         "apiVersion": "2024-03-01",
-        "location": "[resourceGroup().location]",
+        "location": "[parameters('location')]",
         "tags": {
             "displayName": "vnet-001",
             "costCenter": "12345",
